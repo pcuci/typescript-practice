@@ -10,8 +10,18 @@ class UniversityLibrarian implements Librarian {
 }
 
 class ReferenceItem {
+  numberOfPages: number;
   constructor(title: string, publisher?: string) {
     // perform initialization here
+  }
+  get editor(): string {
+    // custom getter logic goes here, should return a value
+    return 'editing';
+  }
+  set editor(newEditor: string) {
+    // custom setter logic goes here
+    let edit = newEditor;
+    console.log('edit', edit);
   }
 }
 
