@@ -1,0 +1,33 @@
+{
+  "name": "typescript-practice",
+  "version": "1.0.0",
+  "description": "TypeScript in depth",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "4.13.1"
+  },
+  "devDependencies": {
+    "babel-cli": "6.9.0",
+    "babel-preset-es2015": "6.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel js -d compiled"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pcuci/typescript-practice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pcuci/typescript-practice/issues"
+  },
+  "homepage": "https://github.com/pcuci/typescript-practice#readme",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  }
+}

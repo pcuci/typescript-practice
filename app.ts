@@ -1,9 +1,16 @@
+/// <reference path="card_catalog.d.ts"/>
+import * as catalog from 'CardCatalog';
+
 import { Category } from './enums';
 import { Book, Logger, Author, Librarian, Magazine } from './interfaces';
 import { UniversityLibrarian, ReferenceItem, ReferencebleItem, Library } from './classes';
 import RefBook from './encyclopedia';
 import { calculateLateFee, maxBooksAllowed, purge } from './lib/utility_functions';
 import Shelf from './shelf';
+import * as _ from 'lodash';
+
+let snakeCaseTitle = _.snakeCase('for whom the Bell Trolls');
+console.log(snakeCaseTitle + ' hey');
 
 let reference = new RefBook('Fact Book', 2016, 1);
 
