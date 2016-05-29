@@ -1,4 +1,8 @@
-function getAllBooks() {
+import { Category } from './enums';
+import { Book, DamageLogger, Author, Librarian } from './interfaces';
+import { UniversityLibrarian, ReferenceItem } from './classes';
+
+function getAllBooks(): Book[] {
   let books = [
     {
       id: 1,
@@ -64,8 +68,6 @@ function logBookTitles(titles: string[]): void {
   }
 }
 
-enum Category { Biography, Poetry, Fiction, History, Children };
-
 const allBooks = getAllBooks();
 logFirstAvailable();
 
@@ -75,7 +77,7 @@ logBookTitles(poetryBooks);
 const fictionBooks = getBookTitlesByCategory(Category.Fiction);
 fictionBooks.forEach((val, idx, arr) => console.log(++idx + ' - ' + val));
 
-function getBookByID(id: number) {
+function getBookByID(id: number): Book {
   const allBooks = getAllBooks();
   return allBooks.filter(book => book.id === id)[0];
 }
@@ -149,3 +151,49 @@ let hermansBooks = getTitles('Herman Melville');
 hermansBooks.forEach(title => console.log(title));
 let checkedoutBooks = getTitles(false);
 checkedoutBooks.forEach(title => console.log(title));
+
+function printBook(book: Book): void {
+  console.log(book.title + ' by ' + book.author);
+}
+
+let myBook: Book = {
+  id: 5,
+  title: 'Pride and Prejudice',
+  author: 'Jane Austen',
+  available: true,
+  category: Category.Fiction,
+  pages: 250,
+  markDamaged: (reason: string) => console.log('Damaged: ' + reason)
+}
+
+myBook.markDamaged('missing back cover');
+printBook(myBook);
+
+let logDamage: DamageLogger;
+logDamage = (damage: string) => console.log('Damage reported: ' + damage);
+
+logDamage('torn pages');
+
+// let favoriteAuthor: Author = {};
+// let favoriteLibrarian: Librarian = {};
+
+class ElementarySchoolLibrarian implements Librarian {
+  name = 'Jane Avery';
+  email = 'jane@school.edu';
+  department: 'Earl Haig Elementary School';
+  assistCustomer() {
+    console.log('Elementary librarian ' + this.name + ' is assisting customer');
+  }
+  doWork() {
+    console.log('Reading to and teaching children...');
+  }
+}
+
+let kidsLibrarian: Librarian = new ElementarySchoolLibrarian();
+kidsLibrarian.doWork();
+
+let favoriteLibrarian: Librarian = new UniversityLibrarian();
+favoriteLibrarian.name = 'Sharon';
+favoriteLibrarian.assistCustomer('Lynda');
+
+let encyclopedia = new ReferenceItem('WorldPedia', 'WorldPub');

@@ -145,3 +145,13 @@ let probablyADuck = {
 
 function flyOverWater(bird: Duck) { }
 flyOverWater(probablyADuck); // works!
+
+interface StringGenerator {
+  (chars: string, nums: number): string;
+}
+
+// let idGenerator: (chars: string, nums: number) => string;
+// or better, easier to read
+let idGenerator: StringGenerator;
+idGenerator = createCustomerID;
+
