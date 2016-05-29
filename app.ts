@@ -1,6 +1,6 @@
 import { Category } from './enums';
 import { Book, DamageLogger, Author, Librarian } from './interfaces';
-import { UniversityLibrarian, ReferenceItem } from './classes';
+import {UniversityLibrarian, ReferenceItem, ReferencebleItem, Library, Encyclopedia} from './classes';
 
 function getAllBooks(): Book[] {
   let books = [
@@ -196,4 +196,38 @@ let favoriteLibrarian: Librarian = new UniversityLibrarian();
 favoriteLibrarian.name = 'Sharon';
 favoriteLibrarian.assistCustomer('Lynda');
 
-let encyclopedia = new ReferenceItem('WorldPedia', 'WorldPub');
+let encyclopedia = new ReferencebleItem('WorldPedia', 'WorldPub');
+
+let lib = new Library('New York Public Library');
+let name = lib.name; // available on instances of the class
+let desc = Library.description; // reference the class to access static vars
+
+// all class members are public, except parameter properties (need public)
+
+// let ref: ReferenceItem = new ReferenceItem('New Facts and Figures', 2016);
+// ref.printItem();
+// ref.publisher = 'Random Data Publishing';
+// console.log(ref.publisher);
+
+let refBook: ReferenceItem = new Encyclopedia('WorldPedia', 1900, 15);
+refBook.printItem();
+refBook.printCitation();
+
+// Class expressions
+let Newspaper = class extends ReferenceItem {
+  printCitation(): void {
+    console.log(`Newspaper: ${this.title}`);
+  }
+}
+let myPaper = new Newspaper('The Gazette', 2010);
+myPaper.printCitation();
+
+// Inline class expressions
+class Novel extends class { title: string } {
+  mainCharacter: string;
+}
+
+let favoriteNovel = new Novel();
+favoriteNovel.title = 'The Idiot';
+favoriteNovel.mainCharacter = 'Irina';
+console.log(`Main character in ${favoriteNovel.title} is ${favoriteNovel.mainCharacter}`);
