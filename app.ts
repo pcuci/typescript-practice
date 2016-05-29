@@ -2,7 +2,7 @@ import { Category } from './enums';
 import { Book, Logger, Author, Librarian } from './interfaces';
 import { UniversityLibrarian, ReferenceItem, ReferencebleItem, Library } from './classes';
 import RefBook from './encyclopedia';
-import { calculateLateFee, maxBooksAllowed } from './lib/utility_functions';
+import { calculateLateFee, maxBooksAllowed, purge } from './lib/utility_functions';
 
 let reference = new RefBook('Fact Book', 2016, 1);
 
@@ -235,3 +235,37 @@ let favoriteNovel = new Novel();
 favoriteNovel.title = 'The Idiot';
 favoriteNovel.mainCharacter = 'Irina';
 console.log(`Main character in ${favoriteNovel.title} is ${favoriteNovel.mainCharacter}`);
+
+let inventory: Array<Book> = [
+  {
+    id: 10,
+    title: 'The C Programming Language',
+    author: 'K & R',
+    available: true,
+    category: Category.Software
+  }, {
+    id: 11,
+    title: 'Code Complete',
+    author: 'Steve McConnel',
+    available: true,
+    category: Category.Software
+  }, {
+    id: 12,
+    title: '8-Bit Graphics with Cobol',
+    author: 'A. B.',
+    available: true,
+    category: Category.Software
+  }, {
+    id: 13,
+    title: 'Cool autoexec.bat Scripts!',
+    author: 'C. D.',
+    available: true,
+    category: Category.Software
+  }
+];
+
+let purgedBooks: Array<Book> = purge<Book>(inventory);
+purgedBooks.forEach(book => console.log(book.title));
+
+let purgedNums: Array<number> = purge<number>([1, 2, 3, 4]);
+purgedNums.forEach(num => console.log(num));

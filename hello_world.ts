@@ -61,7 +61,7 @@ function scopeTest() {
   //anotherString = returnNumber(); // error!
 }
 
-enum Category { Biography, Poetry, Fiction } // 0, 1, 2, or Biography = 4 to start from there
+enum Category {Biography, Poetry, Fiction } // 0, 1, 2, or Biography = 4 to start from there
 let favoriteCategory: Category = Category.Biography;
 console.log(favoriteCategory); // 0
 let categoryString: string = Category[favoriteCategory]; // Biography
@@ -168,3 +168,11 @@ Membership.Card.issueCard(memberNumber);
 let fee = util.calculateLateFee(10);
 console.log(`Fee: ${fee}`);
 
+function logAndReturn<T>(thing: T): T {
+  console.log(thing);
+  return thing;
+}
+
+let someString: string = logAndReturn<string>('log this');
+// let newMag: Magazine = { title: 'Web Dev Monthly' };
+// let someMag: Magazine = logAndReturn<Magazine>(newMag);
