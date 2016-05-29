@@ -1,3 +1,34 @@
+let books = [
+  {
+    id: 1,
+    title: 'Ulysses',
+    author: 'James Joyce',
+    available: true,
+    category: Category.Fiction
+  },
+  {
+    id: 2,
+    title: 'A Farewell to Arms',
+    author: 'Ernest Hemingway',
+    available: false,
+    category: Category.Fiction
+  },
+  {
+    id: 3,
+    title: 'I Know Why the Caged Bird Sings',
+    author: 'Maya Angelou',
+    available: true,
+    category: Category.Poetry
+  },
+  {
+    id: 4,
+    title: 'Moby Dick',
+    author: 'Herman Melville',
+    available: true,
+    category: Category.Fiction
+  }
+];
+
 class HelloWorld {
   constructor(public message: string) {
   }
@@ -44,16 +75,16 @@ function createCustomerID(name: string, id: number): string {
   return name + id;
 }
 
-let arr = allBooks.filter(function(book) {
+let arr = books.filter(function(book) {
   return book.author == 'Herman Melville';
 });
 
-let arrow = allBooks.filter(book => book.author === 'Herman Melville');
+let arrow = books.filter(book => book.author === 'Herman Melville');
 
-myBooks.forEach(() => console.log('Done reading!'));
-myBooks.forEach(title => console.log(title));
-myBooks.forEach((title, idx, arr) => console.log(idx + ' - ' + title));
-myBooks.forEach((title, idx, arr) => {
+books.forEach(() => console.log('Done reading!'));
+books.forEach(title => console.log(title));
+books.forEach((title, idx, arr) => console.log(idx + ' - ' + title));
+books.forEach((title, idx, arr) => {
   console.log(idx + ' - ' + title);
   // do more stuff
 });
@@ -75,3 +106,42 @@ function dateFatBook() {
   }, 1000);
 }
 
+function publishDate(year: number): string {
+  return 'date published: ' + year;
+}
+
+let publishFunc: (someYear: number) => string;
+
+publishFunc = publishDate;
+let message: string = publishFunc(2016);
+
+// optional parameters
+function createCustomer(name: string, age?: number) { }
+
+function getBookByTitle(title: string = 'The C Programming Language') { }
+
+function getMostPopularBook() {
+  return 'Antifragile';
+}
+
+function getBookByComputedTitle(title: string = getMostPopularBook()) { } // use an expression to default the value of a parameter
+
+function getBooksReadForCust(name: string, ...bookIDs: number[]) { }
+
+let readBooks = getBooksReadForCust('Leight', 2, 5);
+let moreBooksRead = getBooksReadForCust('Daniel', 2, 5, 12, 42);
+
+interface Duck {
+  walk: () => void;
+  swim: () => void;
+  quack: () => void;
+}
+
+let probablyADuck = {
+  walk: () => console.log('walking like a duck'),
+  swim: () => console.log('swimming like a duck'),
+  quack: () => console.log('quacking like a duck')
+}
+
+function flyOverWater(bird: Duck) { }
+flyOverWater(probablyADuck); // works!
