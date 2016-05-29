@@ -36,4 +36,19 @@ interface Librarian extends Person {
   doWork?: () => void;
 }
 
-export { Book, DamageLogger as Logger, Author, Librarian };
+interface Inventory<T> {
+  getNewestItem: () => T;
+  addItem: (newItem: T) => void;
+  getAllItems: () => Array<T>;
+}
+
+interface Magazine {
+  title: string;
+  publisher: string;
+}
+
+interface CatalogItem {
+  catalogNumber: number;
+}
+
+export { Book, DamageLogger as Logger, Author, Librarian, Inventory, Magazine, CatalogItem };

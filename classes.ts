@@ -87,4 +87,13 @@ class Journal extends ReferencebleItem {
   contributors: string[];
 }
 
-export { UniversityLibrarian, ReferenceItem, ReferencebleItem, Library };
+class Catalog<T extends Interfaces.CatalogItem> implements Interfaces.Inventory<T> {
+  private catalogItems = new Array<T>();
+  getNewestItem: () => T;
+  addItem(newItem: T): void {
+    this.catalogItems;
+  }
+  getAllItems: () => Array<T>;
+}
+
+export { UniversityLibrarian, ReferenceItem, ReferencebleItem, Library, Catalog };

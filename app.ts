@@ -1,8 +1,9 @@
 import { Category } from './enums';
-import { Book, Logger, Author, Librarian } from './interfaces';
+import { Book, Logger, Author, Librarian, Magazine } from './interfaces';
 import { UniversityLibrarian, ReferenceItem, ReferencebleItem, Library } from './classes';
 import RefBook from './encyclopedia';
 import { calculateLateFee, maxBooksAllowed, purge } from './lib/utility_functions';
+import Shelf from './shelf';
 
 let reference = new RefBook('Fact Book', 2016, 1);
 
@@ -264,8 +265,30 @@ let inventory: Array<Book> = [
   }
 ];
 
-let purgedBooks: Array<Book> = purge<Book>(inventory);
-purgedBooks.forEach(book => console.log(book.title));
+// let purgedBooks: Array<Book> = purge<Book>(inventory);
+// purgedBooks.forEach(book => console.log(book.title));
+//
+// let purgedNums: Array<number> = purge<number>([1, 2, 3, 4]);
+// purgedNums.forEach(num => console.log(num));
 
-let purgedNums: Array<number> = purge<number>([1, 2, 3, 4]);
-purgedNums.forEach(num => console.log(num));
+let bookShelf: Shelf<Book> = new Shelf<Book>();
+inventory.forEach(book => bookShelf.add(book));
+let firstBook: Book = bookShelf.getFirst();
+
+let magazines: Array<Magazine> = [
+  { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+  { title: 'Literary Fiction Quarterly', publisher: 'College Press'},
+  { title: 'Five Points', publisher: 'GSU' }
+];
+
+let magazineShelf: Shelf<Magazine> = new Shelf<Magazine>();
+magazines.forEach(magazine => magazineShelf.add(magazine));
+let firstMagazine: Magazine = magazineShelf.getFirst();
+
+// Error:(288, 44) TS2344: Type 'number' does not satisfy the constraint 'ShelfItem'.
+// let numberShelf: Shelf<number> = new Shelf<number>();
+// [5, 16, 23].forEach(num => numberShelf. add(num));
+
+magazineShelf.printTitles();
+let softwareBook = bookShelf.find('Code Complete');
+console.log(`${softwareBook.title} (${softwareBook.author})`);
