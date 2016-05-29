@@ -1,6 +1,6 @@
-import {Book, DamageLogger, Author, Librarian} from './interfaces';
+import * as Interfaces from './interfaces';
 
-class UniversityLibrarian implements Librarian {
+class UniversityLibrarian implements Interfaces.Librarian {
   name: string;
   email: string;
   department: string;
@@ -87,19 +87,4 @@ class Journal extends ReferencebleItem {
   contributors: string[];
 }
 
-class Encyclopedia extends ReferenceItem {
-  constructor(newTitle: string, newYear: number, public edition: number) {
-    super(newTitle, newYear);
-  }
-
-  printItem(): void {
-    super.printItem();
-    console.log(`Edition: ${this.edition} (${this.year})`);
-  }
-
-  printCitation(): void {
-    console.log(`${this.title} - ${this.year}`);
-  }
-}
-
-export { UniversityLibrarian, ReferenceItem, ReferencebleItem, Library, Encyclopedia };
+export { UniversityLibrarian, ReferenceItem, ReferencebleItem, Library };

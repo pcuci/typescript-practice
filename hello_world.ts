@@ -1,3 +1,8 @@
+/// <reference path='membership.ts' />
+/// <reference path='utility_functions.ts'/>
+
+import util = Utility.Fees;
+
 let books = [
   {
     id: 1,
@@ -154,4 +159,12 @@ interface StringGenerator {
 // or better, easier to read
 let idGenerator: StringGenerator;
 idGenerator = createCustomerID;
+
+let memberName: string = 'Elaine';
+let memberNumber: number = 798;
+Membership.addMember(memberName);
+Membership.Card.issueCard(memberNumber);
+
+let fee = util.calculateLateFee(10);
+console.log(`Fee: ${fee}`);
 

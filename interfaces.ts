@@ -36,4 +36,4 @@ interface Librarian extends Person {
   doWork?: () => void;
 }
 
-export { Book, DamageLogger, Author, Librarian };
+export { Book, DamageLogger as Logger, Author, Librarian };

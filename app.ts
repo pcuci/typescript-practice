@@ -1,6 +1,10 @@
 import { Category } from './enums';
-import { Book, DamageLogger, Author, Librarian } from './interfaces';
-import {UniversityLibrarian, ReferenceItem, ReferencebleItem, Library, Encyclopedia} from './classes';
+import { Book, Logger, Author, Librarian } from './interfaces';
+import { UniversityLibrarian, ReferenceItem, ReferencebleItem, Library } from './classes';
+import RefBook from './encyclopedia';
+import { calculateLateFee, maxBooksAllowed } from './lib/utility_functions';
+
+let reference = new RefBook('Fact Book', 2016, 1);
 
 function getAllBooks(): Book[] {
   let books = [
@@ -169,7 +173,7 @@ let myBook: Book = {
 myBook.markDamaged('missing back cover');
 printBook(myBook);
 
-let logDamage: DamageLogger;
+let logDamage: Logger;
 logDamage = (damage: string) => console.log('Damage reported: ' + damage);
 
 logDamage('torn pages');
@@ -209,7 +213,7 @@ let desc = Library.description; // reference the class to access static vars
 // ref.publisher = 'Random Data Publishing';
 // console.log(ref.publisher);
 
-let refBook: ReferenceItem = new Encyclopedia('WorldPedia', 1900, 15);
+let refBook: ReferenceItem = new RefBook('WorldPedia', 1900, 15);
 refBook.printItem();
 refBook.printCitation();
 
